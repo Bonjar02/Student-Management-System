@@ -1,1 +1,45 @@
+create proc Student
+@s_id int,
+@s_name varchar(50),
+@s_regno varchar(50),
+@s_department varchar(50),
+@s_batch varchar(50),
+@s_gender varchar(50)
+as 
+begin
+Insert into TableStudent (s_id,s_name,s_regno,s_department,s_batch,s_gender)
+values (@s_id,@s_name,@s_regno,@s_department,@s_batch,@s_gender)
+end
+
+exec Student 1,'Selena','11485746','CSE','2014-2018','Male'
+
+create proc StudentList
+as 
+begin
+select * from TableStudent
+end
+
+exec StudentList
+
+create proc Edit
+@s_id int,
+@s_name varchar(50),
+@s_regno varchar(50),
+@s_department varchar(50),
+@s_batch varchar(50),
+@s_gender varchar(50)
+as 
+begin
+update TableStudent set s_id=@s_id,s_name=@s_name,
+s_regno=@s_regno,s_department=@s_department,
+s_batch=@s_batch,s_gender=@s_gender where s_id=@s_id
+end
+
+create proc StudentDelete
+@s_id int
+as 
+begin
+Delete TableStudent where s_id=@s_id
+end
+
 
